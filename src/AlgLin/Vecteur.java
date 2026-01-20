@@ -64,6 +64,48 @@ public class Vecteur extends Matrice {
         
         return resultat;
     }
+    
+    public double normeL1() {
+	double sum = 0;
+	for (int i = 0; i < this.taille(); i++) sum += Math.abs(this.getCoef(i));
+	return sum;
+    }
+    
+    public double normeL2() {
+	double sum = 0;
+	for (int i = 0; i < this.taille(); i++) sum += Math.pow(this.getCoef(i), 2);
+	return Math.sqrt(sum);
+    }
+    
+    public double normeLinfini() {
+	double max = 0;
+	for (int i = 0; i < this.taille(); i++) max = Math.max(max, Math.abs(this.getCoef(i)));
+	return max;
+    }
+    
+    public static void testSolution(Matrice A, Vecteur x, Vecteur b) {
+        try {
+            // Calcul de Ax (en convertissant x en matrice temporairement)
+            Matrice Ax_mat = Matrice.produit(A, x); 
+            Vecteur Ax = new Vecteur(Ax_mat);
+            
+            // Calcul de Ax - b
+            Vecteur residu = new Vecteur(Ax.taille());
+            for(int i=0; i<Ax.taille(); i++) {
+                residu.remplacecoef(i, Ax.getCoef(i) - b.getCoef(i));
+            }
+            
+            double erreur = residu.normeL2();
+            System.out.println("Norme L2 de l'erreur (Ax-b) : " + erreur);
+            if (erreur < Matrice.EPSILON) {
+                System.out.println("La solution est CORRECTE.");
+            } else {
+                System.out.println("La solution est INCORRECTE.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         System.out.println("--- Test de la classe Vecteur ---");
