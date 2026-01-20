@@ -1,7 +1,7 @@
 package AlgLin;
 
 public class SysDiagonal extends SysLin {
-    
+
     public SysDiagonal(Matrice M, Vecteur b) throws Exception {
         super(M, b);
     }
@@ -20,8 +20,8 @@ public class SysDiagonal extends SysLin {
     }
 
     public static void main(String[] args) throws Exception {
-        double[][] data = {{2, 0}, {0, 4}};
-        double[] bData = {10, 20};
+        double[][] data = { { 2, 0 }, { 0, 4 } };
+        double[] bData = { 10, 20 };
         SysDiagonal sys = new SysDiagonal(new Matrice(data), new Vecteur(bData));
         Vecteur sol = sys.resolution();
         System.out.println("Solution du système diagonal :\n" + sol);

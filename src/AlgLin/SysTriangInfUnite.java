@@ -2,8 +2,10 @@ package AlgLin;
 
 // Classe pour L (diagonale unité)
 class SysTriangInfUnite extends SysTriangInf {
-    public SysTriangInfUnite(Matrice M, Vecteur b) throws Exception { super(M, b); }
-    
+    public SysTriangInfUnite(Matrice M, Vecteur b) throws Exception {
+        super(M, b);
+    }
+
     @Override
     public Vecteur resolution() throws IrregularSysLinException {
         Vecteur x = new Vecteur(ordre);

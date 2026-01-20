@@ -6,10 +6,6 @@ public class Helder extends SysLin {
         super(M, b);
     }
 
-    /**
-     * Calcule la factorisation LDR et stocke les résultats dans matriceSystem
-     * A est écrasée par L (partie stricte inf), D (diagonale) et R (partie stricte sup)
-     */
     public void factorLDR() throws IrregularSysLinException {
         int n = this.ordre;
         for (int i = 0; i < n; i++) {
@@ -75,46 +71,43 @@ public class Helder extends SysLin {
     }
 
     public static void main(String[] args) throws Exception {
-	    // 1. Définition des données de l'énoncé
-	    double[][] dataA = {
-	        {1,  1, -2},
-	        {4, -2,  1},
-	        {3, -1,  3}
-	    };
-	    double[] dataB = {3, 5, 8};
+        // 1. Définition des données de l'énoncé
+        double[][] dataA = {
+                { 1, 1, -2 },
+                { 4, -2, 1 },
+                { 3, -1, 3 }
+        };
+        double[] dataB = { 3, 5, 8 };
 
-	    // 2. On garde des copies pour la vérification finale (Ax = b)
-	    // On utilise le constructeur de Matrice(double[][]) que vous avez déjà
-	    Matrice A_originale = new Matrice(dataA);
-	    // On crée un nouveau tableau pour b car les objets sont passés par référence
-	    Vecteur b_original = new Vecteur(new double[]{3, 5, 8});
+        // 2. On garde des copies pour la vérification finale (Ax = b)
+        Matrice A_originale = new Matrice(dataA);
+        Vecteur b_original = new Vecteur(new double[] { 3, 5, 8 });
 
-	    // 3. Création du système Helder
-	    // Attention : on passe une NOUVELLE instance de matrice car elle sera modifiée par factorLDR
-	    Matrice A_pour_calcul = new Matrice(new double[][]{
-	        {1,  1, -2},
-	        {4, -2,  1},
-	        {3, -1,  3}
-	    });
-	    Helder helder = new Helder(A_pour_calcul, new Vecteur(dataB));
+        // 3. Création du système Helder
+        Matrice A_pour_calcul = new Matrice(new double[][] {
+                { 1, 1, -2 },
+                { 4, -2, 1 },
+                { 3, -1, 3 }
+        });
+        Helder helder = new Helder(A_pour_calcul, new Vecteur(dataB));
 
-	    try {
-	        System.out.println("--- Test avec la matrice utilisateur ---");
-	        System.out.println("Matrice A :\n" + A_originale);
-	        System.out.println("Second membre b :\n" + b_original);
+        try {
+            System.out.println("--- Test avec la matrice utilisateur ---");
+            System.out.println("Matrice A :\n" + A_originale);
+            System.out.println("Second membre b :\n" + b_original);
 
-	        // 4. Résolution (Factorisation + Résolution Partielle)
-	        Vecteur x = helder.resolution();
+            // 4. Résolution (Factorisation + Résolution Partielle)
+            Vecteur x = helder.resolution();
 
-	        System.out.println("Solution trouvée x :");
-	        System.out.println(x);
+            System.out.println("Solution trouvée x :");
+            System.out.println(x);
 
-	        // 5. Vérification avec la norme de l'erreur
-	        // Utilise la méthode testSolution ajoutée précédemment dans Vecteur
-	        Vecteur.testSolution(A_originale, x, b_original);
+            // 5. Vérification avec la norme de l'erreur
+            // Utilise la méthode testSolution ajoutée précédemment dans Vecteur
+            Vecteur.testSolution(A_originale, x, b_original);
 
-	    } catch (IrregularSysLinException e) {
-	        System.out.println("Erreur : " + e.getMessage());
-	    }
-	}
+        } catch (IrregularSysLinException e) {
+            System.out.println("Erreur : " + e.getMessage());
+        }
+    }
 }

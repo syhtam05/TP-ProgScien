@@ -1,8 +1,10 @@
 package AlgLin;
 
 class SysTriangSupUnite extends SysTriangSup {
-    public SysTriangSupUnite(Matrice M, Vecteur b) throws Exception { super(M, b); }
-    
+    public SysTriangSupUnite(Matrice M, Vecteur b) throws Exception {
+        super(M, b);
+    }
+
     @Override
     public Vecteur resolution() throws IrregularSysLinException {
         Vecteur x = new Vecteur(ordre);

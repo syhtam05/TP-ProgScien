@@ -17,10 +17,21 @@ public abstract class SysLin {
         this.secondMembre = b;
     }
 
-    public int getOrdre() { return ordre; }
-    public Matrice getMatriceSystem() { return matriceSystem; }
-    public Vecteur getSecondMembre() { return secondMembre; }
-    public void setSecondMembre(Vecteur b) { this.secondMembre = b; }
+    public int getOrdre() {
+        return ordre;
+    }
+
+    public Matrice getMatriceSystem() {
+        return matriceSystem;
+    }
+
+    public Vecteur getSecondMembre() {
+        return secondMembre;
+    }
+
+    public void setSecondMembre(Vecteur b) {
+        this.secondMembre = b;
+    }
 
     public abstract Vecteur resolution() throws IrregularSysLinException;
 }
