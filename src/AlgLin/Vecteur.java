@@ -134,7 +134,7 @@ public class Vecteur extends Matrice {
         System.out.println("Produit scalaire v1 . v2 = " + scalaire);
 
         // Test 5: Lecture fichier
-        Vecteur v3 = new Vecteur("vecteur1.pdf");
+        Vecteur v3 = new Vecteur("vecteur1.txt");
         System.out.println("Vecteur v3 (depuis fichier) :\n" + v3);
     }
 }
