@@ -5,12 +5,12 @@ public abstract class SysLin {
     protected Matrice matriceSystem;
     protected Vecteur secondMembre;
 
-    public SysLin(Matrice M, Vecteur b) throws Exception {
+    public SysLin(Matrice M, Vecteur b) throws IrregularSysLinException {
         if (M.nbLigne() != M.nbColonne()) {
-            throw new Exception("La matrice doit être carrée.");
+            throw new IrregularSysLinException("La matrice doit être carrée.");
         }
         if (M.nbLigne() != b.taille()) {
-            throw new Exception("La matrice et le vecteur doivent avoir la même dimension.");
+            throw new IrregularSysLinException("La matrice et le vecteur doivent avoir la même dimension.");
         }
         this.ordre = M.nbLigne();
         this.matriceSystem = M;

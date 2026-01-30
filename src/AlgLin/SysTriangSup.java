@@ -2,7 +2,7 @@ package AlgLin;
 
 public class SysTriangSup extends SysLin {
 
-    public SysTriangSup(Matrice M, Vecteur b) throws Exception {
+    public SysTriangSup(Matrice M, Vecteur b) throws IrregularSysLinException {
         super(M, b);
     }
 
@@ -27,15 +27,20 @@ public class SysTriangSup extends SysLin {
         return x;
     }
 
-    public static void main(String[] args) throws Exception {
-        double[][] mData = { { 1, 2 }, { 0, 1 } }; // x + 2y = 5; 2y = 4
+    public static void main(String[] args) throws IrregularSysLinException {
+        double[][] mData = { { 1, 2 }, { 0, 4 } }; // x + 2y = 5; 4y = 4
         double[] bData = { 5, 4 };
 
         Matrice M = new Matrice(mData);
         Vecteur b = new Vecteur(bData);
         SysTriangSup sys = new SysTriangSup(M, b);
-
         Vecteur sol = sys.resolution();
+        
+        System.out.println("getOrdre :\n" + sys.getOrdre() + "\n");
+        System.out.println("getMatriceSystem :\n" + sys.getMatriceSystem());
+        System.out.println("getSecondMembre :\n" + sys.getSecondMembre());
+        sys.setSecondMembre(sol);
+        System.out.println("setSecondMembre :\n" + sys.getSecondMembre());
         System.out.println("Solution Supérieure :\n" + sol);
         Vecteur.testSolution(M, sol, b);
     }

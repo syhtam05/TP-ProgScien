@@ -51,9 +51,9 @@ public class Vecteur extends Matrice {
         super.remplacecoef(i, 0, value);
     }
 
-    public static double produitScalaire(Vecteur v1, Vecteur v2) throws Exception {
+    public static double produitScalaire(Vecteur v1, Vecteur v2) throws IrregularSysLinException {
         if (v1.taille() != v2.taille()) {
-            throw new Exception("Les vecteurs doivent avoir la même taille pour le produit scalaire");
+            throw new IrregularSysLinException("Les vecteurs doivent avoir la même taille pour le produit scalaire");
         }
 
         double resultat = 0;
@@ -101,16 +101,16 @@ public class Vecteur extends Matrice {
             double erreur = residu.normeL2();
             System.out.println("Norme L2 de l'erreur (Ax-b) : " + erreur);
             if (erreur < Matrice.EPSILON) {
-                System.out.println("La solution est CORRECTE.");
+                System.out.println("La solution est CORRECTE.\n");
             } else {
-                System.out.println("La solution est INCORRECTE.");
+                System.out.println("La solution est INCORRECTE.\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IrregularSysLinException {
         System.out.println("--- Test de la classe Vecteur ---");
 
         // Test 1: Constructeur tableau 1D

@@ -2,7 +2,7 @@ package AlgLin;
 
 public class SysTriangInf extends SysLin {
 
-    public SysTriangInf(Matrice M, Vecteur b) throws Exception {
+    public SysTriangInf(Matrice M, Vecteur b) throws IrregularSysLinException {
         super(M, b);
     }
 
@@ -28,14 +28,19 @@ public class SysTriangInf extends SysLin {
     }
 
     public static void main(String[] args) throws Exception {
-        double[][] mData = { { 1, 0 }, { 4, 1 } }; // x = 2; 4x + y = 5
+        double[][] mData = { { 4, 0 }, { 4, 2 } }; // x = 2; 4x + y = 5
         double[] bData = { 2, 5 };
 
         Matrice M = new Matrice(mData);
         Vecteur b = new Vecteur(bData);
         SysTriangInf sys = new SysTriangInf(M, b);
-
         Vecteur sol = sys.resolution();
+        
+        System.out.println("getOrdre :\n" + sys.getOrdre() + "\n");
+        System.out.println("getMatriceSystem :\n" + sys.getMatriceSystem());
+        System.out.println("getSecondMembre :\n" + sys.getSecondMembre());
+        sys.setSecondMembre(sol);
+        System.out.println("setSecondMembre :\n" + sys.getSecondMembre());
         System.out.println("Solution Inférieure :\n" + sol);
         Vecteur.testSolution(M, sol, b);
     }

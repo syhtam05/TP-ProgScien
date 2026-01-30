@@ -98,7 +98,7 @@ public class Matrice {
 		return mat;
 	}
 
-	static Matrice verif_addition(Matrice a, Matrice b) throws Exception {
+	static Matrice verif_addition(Matrice a, Matrice b) throws IrregularSysLinException {
 		if ((a.nbLigne() == b.nbLigne()) && (a.nbColonne() == b.nbColonne())) {
 			int ligne = a.nbLigne();
 			int colonne = a.nbColonne();
@@ -108,7 +108,7 @@ public class Matrice {
 					mat.coefficient[i][j] = a.coefficient[i][j] + b.coefficient[i][j];
 			return mat;
 		} else {
-			throw new Exception("Les deux matrices n'ont pas les mêmes dimensions !!!");
+			throw new IrregularSysLinException("Les deux matrices n'ont pas les mêmes dimensions !!!");
 		}
 	}
 
@@ -126,14 +126,14 @@ public class Matrice {
 		return mat;
 	}
 
-	static Matrice verif_produit(Matrice a, Matrice b) throws Exception {
+	static Matrice verif_produit(Matrice a, Matrice b) throws IrregularSysLinException {
 		int ligne = 0;
 		int colonne = 0;
 		if (a.nbColonne() == b.nbLigne()) {
 			ligne = a.nbLigne();
 			colonne = b.nbColonne();
 		} else {
-			throw new Exception("Dimensions des matrices à multiplier incorrectes");
+			throw new IrregularSysLinException("Dimensions des matrices à multiplier incorrectes");
 		}
 
 		Matrice mat = new Matrice(ligne, colonne);
@@ -146,7 +146,7 @@ public class Matrice {
 		return mat;
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws IrregularSysLinException {
 		double mat[][] = { { 2, 1 }, { 0, 1 } };
 		Matrice a = new Matrice(mat);
 		System.out.println("construction d'une matrice par affectation d'un tableau :\n" + a);
