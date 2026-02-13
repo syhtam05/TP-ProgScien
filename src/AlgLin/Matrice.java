@@ -224,7 +224,7 @@ public class Matrice {
 	}
 
 	public static void main(String[] args) throws IrregularSysLinException {
-		/*double mat[][] = { { 2, 1 }, { 0, 1 } };
+		double mat[][] = { { 2, 1 }, { 0, 1 } };
 		Matrice a = new Matrice(mat);
 		System.out.println("construction d'une matrice par affectation d'un tableau :\n" + a);
 		//Matrice b = new Matrice("matrice1.txt");
@@ -246,11 +246,8 @@ public class Matrice {
 		System.out.println("Produit de 2 matrices : affichage des 2 matrices " +
 				"puis de leur produit");
 		System.out.println("matrice 1 :\n" + a + "matrice 2 :\n" + c + "produit :\n" +
-				produit(a, c));*/
+				produit(a, c));
 		
-		// --- Tests existants ---
-	    double mat[][] = { { 2, 1 }, { 0, 1 } };
-	    Matrice a = new Matrice(mat);
 	    System.out.println("Matrice d'origine A :\n" + a);
 	    
 	    // --- Nouveaux Tests : Inversion et Conditionnement ---
