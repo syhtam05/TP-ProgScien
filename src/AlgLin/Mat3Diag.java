@@ -40,19 +40,18 @@ public class Mat3Diag extends Matrice {
     }
 
     public static Vecteur produit(Mat3Diag M, Vecteur V) {
-	int n = M.nbLigne(); // On utilise notre nbLigne() qui renvoie l'ordre n
+	int n = M.nbLigne();
 	if (n != V.taille()) {
 	    throw new RuntimeException("Dimensions incompatibles pour le produit Mat-Vect.");
 	}
 
 	Vecteur resultat = new Vecteur(n);
-	double[][] c = M.coefficient; // Accès au stockage [0:sur, 1:diag, 2:sous]
+	double[][] c = M.coefficient; //[0:sur, 1:diag, 2:sous]
 
 	for (int i = 0; i < n; i++) {
 	    double somme = 0;
 
 	    // 1. Terme de la sous-diagonale (Ligne 2)
-	    // Existe si on n'est pas sur la première ligne
 	    if (i > 0) {
 		somme += c[2][i] * V.getCoef(i - 1);
 	    }
@@ -61,7 +60,6 @@ public class Mat3Diag extends Matrice {
 	    somme += c[1][i] * V.getCoef(i);
 
 	    // 3. Terme de la sur-diagonale (Ligne 0)
-	    // Existe si on n'est pas sur la dernière ligne
 	    if (i < n - 1) {
 		somme += c[0][i] * V.getCoef(i + 1);
 	    }
@@ -73,7 +71,6 @@ public class Mat3Diag extends Matrice {
     }
     
     public static void main(String[] args) {
-	    // Matrice 4x4 définie par un stockage 3x4
 	    double[][] data = {
 	        {1, 1, 1, 0}, // Sur-diagonale
 	        {2, 2, 2, 2}, // Diagonale principale
@@ -81,6 +78,7 @@ public class Mat3Diag extends Matrice {
 	    };
 	    
 	    Mat3Diag M = new Mat3Diag(data);
+	    System.out.println(M);
 	    
 	    // Vecteur V = [1, 1, 1, 1]
 	    Vecteur V = new Vecteur(new double[]{1, 1, 1, 1});
@@ -91,7 +89,7 @@ public class Mat3Diag extends Matrice {
 	    System.out.println("Produit M * V :");
 	    System.out.println(res);
 	    
-	    /* Détail du calcul attendu :
+	    /* Attendu :
 	       Ligne 0 : (2*1) + (1*1)          = 3
 	       Ligne 1 : (1*1) + (2*1) + (1*1)  = 4
 	       Ligne 2 : (1*1) + (2*1) + (1*1)  = 4
